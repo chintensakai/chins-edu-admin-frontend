@@ -1,4 +1,4 @@
-# chins-edu-frontend
+# chins-edu-admin-frontend
 
 ## Project setup
 ```
