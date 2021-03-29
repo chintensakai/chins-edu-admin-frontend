@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 
 import { Button,  Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuItemGroup,
-  Dropdown, DropdownMenu, DropdownItem, Breadcrumb, BreadcrumbItem } from 'element-ui';
+  Dropdown, DropdownMenu, DropdownItem, Breadcrumb, BreadcrumbItem,
+  Table, TableColumn, Pagination } from 'element-ui';
 
 Vue.use(Button)
 Vue.use(Container)
@@ -20,6 +21,9 @@ Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Pagination);
 
 
 Vue.config.productionTip = false

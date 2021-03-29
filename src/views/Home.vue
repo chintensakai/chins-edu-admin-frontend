@@ -29,4 +29,7 @@ export default {
   background: #f3f3f3;
   /* border-bottom: 1px solid #f3f3f3; */
 }
+.el-main {
+  padding: 5;
+}
 </style>

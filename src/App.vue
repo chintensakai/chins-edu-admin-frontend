@@ -15,7 +15,7 @@ export default {
 
 <style>
 #app {
-  /* height: 100vh; */
+  height: 100vh;
   margin: 0;
   padding: 0;
 }

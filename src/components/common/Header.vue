@@ -34,7 +34,7 @@ export default {
   name: "Header",
   data() {
     return {
-      avatar: require(),
+      // avatar: require(),
     };
   },
   computed: {
