@@ -1,5 +1,8 @@
 <template>
   <div>
+    <TeacherSearchForm
+      @searchTeacherByCondition="showSearchRes"
+    ></TeacherSearchForm>
     <el-table :data="teacherList" style="width: 100%" stripe>
       <el-table-column label="姓名" width="180">
         <template slot-scope="scope">
@@ -42,8 +45,12 @@
 
 <script>
 import { getAllTeacherPage } from "@/network/teacher.js";
+import TeacherSearchForm from "@/components/teacher/TeacherSearchForm.vue";
 export default {
   name: "Teacher",
+  components: {
+    TeacherSearchForm,
+  },
   data() {
     return {
       teacherList: [],
@@ -52,7 +59,14 @@ export default {
       total: 0,
     };
   },
-  methods: {},
+  methods: {
+    showSearchRes(searchResult) {
+      console.log(searchResult);
+      // 接受子组件搜索的结果
+      this.teacherList = searchResult;
+      this.total = searchResult.total;
+    },
+  },
   created() {
     getAllTeacherPage(this.current, this.size).then((res) => {
       console.log(res);

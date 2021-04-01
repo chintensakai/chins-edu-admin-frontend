@@ -8,3 +8,11 @@ export function getAllTeacherPage(current, size) {
         url: teacher_base_url + '/get-all-teacher-page/' + current + "/" + size
     })
 }
+
+export function searchTeacherByCondition(condition) {
+    return request({
+        method: 'post',
+        data: condition,
+        url: teacher_base_url + '/find-teacher'
+    })
+}
