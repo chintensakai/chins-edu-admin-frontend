@@ -31,13 +31,10 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("submit!");
       searchTeacherByCondition({
         name: this.formInline.name,
         level: this.formInline.level,
       }).then((res) => {
-        console.log(res.data.items)
-
         this.$emit("searchTeacherByCondition", res.data.items);
       });
     },

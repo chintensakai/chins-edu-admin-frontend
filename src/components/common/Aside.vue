@@ -8,7 +8,7 @@
       active-text-color="#ffd04b"
       router
     >
-      <el-menu-item
+      <!-- <el-menu-item
         :index="item.path"
         v-for="item in noChildren"
         :key="item.path"
@@ -16,9 +16,9 @@
       >
         <i :class="'el-icon-' + item.icon"></i>
         <span slot="title">{{ item.label }}</span>
-      </el-menu-item>
+      </el-menu-item> -->
       <el-submenu
-        index="index"
+        :index="index"
         v-for="(item, index) in hasChildren"
         :key="index"
       >
@@ -54,10 +54,21 @@ export default {
           icon: "home",
         },
         {
-          path: "/teacher",
           name: "menu",
           label: "讲师管理",
           icon: "menu",
+          children: [
+            {
+              path: "/teachers",
+              name: "teachers",
+              label: "所有讲师",
+            },
+            {
+              path: "/add-teacher",
+              name: "add-teacher",
+              label: "添加讲师",
+            },
+          ],
         },
         {
           path: "/nemu3",
@@ -95,9 +106,10 @@ export default {
   },
   methods: {
     clickMenu(item) {
-      this.$store.commit('selectMenu', item)
-    }
-  }
+      console.log(item)
+      this.$store.commit("selectMenu", item);
+    },
+  },
 };
 </script>
 
