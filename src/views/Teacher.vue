@@ -40,7 +40,7 @@
     </el-table>
     <el-pagination background layout="prev, pager, next" :total="total">
     </el-pagination>
-    <el-button type="text">点击打开 Message Box</el-button>
+    <el-button type="text" v-show="false"></el-button>
   </div>
 </template>
 
