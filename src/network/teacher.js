@@ -16,3 +16,10 @@ export function searchTeacherByCondition(condition) {
         url: teacher_base_url + '/find-teacher'
     })
 }
+
+export function deletebyId(id) {
+    return request({
+        method: 'delete',
+        url: teacher_base_url + '/' + id
+    })
+}

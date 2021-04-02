@@ -26,13 +26,13 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
+          <el-button size="mini" @click="handleEdit(scope.row.id)"
             >编辑</el-button
           >
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
+            @click="handleDelete(scope.row.id)"
             >删除</el-button
           >
         </template>
@@ -40,11 +40,13 @@
     </el-table>
     <el-pagination background layout="prev, pager, next" :total="total">
     </el-pagination>
+    <el-button type="text">点击打开 Message Box</el-button>
   </div>
 </template>
 
 <script>
 import { getAllTeacherPage } from "@/network/teacher.js";
+import { deletebyId } from "@/network/teacher.js";
 import TeacherSearchForm from "@/components/teacher/TeacherSearchForm.vue";
 export default {
   name: "Teacher",
@@ -60,19 +62,44 @@ export default {
     };
   },
   methods: {
+    showTeacherList() {
+      getAllTeacherPage(this.current, this.size).then((res) => {
+        console.log(res);
+        this.teacherList = res.data.items.records;
+        this.total = res.data.items.total;
+      });
+    },
     showSearchRes(searchResult) {
       console.log(searchResult);
       // 接受子组件搜索的结果
       this.teacherList = searchResult;
       this.total = searchResult.total;
     },
+    handleDelete(id) {
+      this.$confirm("此操作将删除该记录, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          deletebyId(id).then(() => {
+            this.$message({
+              type: "success",
+              message: "删除成功!",
+            });
+            this.showTeacherList();
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
+    },
   },
   created() {
-    getAllTeacherPage(this.current, this.size).then((res) => {
-      console.log(res);
-      this.teacherList = res.data.items.records;
-      this.total = res.data.items.total;
-    });
+    this.showTeacherList();
   },
 };
 </script>
