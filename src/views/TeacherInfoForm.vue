@@ -14,7 +14,24 @@
         <el-input v-model="form.career"></el-input>
       </el-form-item>
       <el-form-item label="讲师简介">
-        <el-input type="textarea" :rows="10" v-model="form.intro"></el-input>
+        <el-input type="textarea" :rows="8" v-model="form.intro"></el-input>
+      </el-form-item>
+      <el-form-item label="头像">
+        <el-upload
+          class="upload-demo"
+          :action="uploadUrl"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :on-success="uploadFile"
+          list-type="picture"
+          :multiple="false"
+          show-file-list
+        >
+          <el-button size="small" type="primary">点击上传</el-button>
+          <div slot="tip" class="el-upload__tip">
+            只能上传jpg/png文件，且不超过500kb
+          </div>
+        </el-upload>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">立即添加</el-button>
@@ -36,7 +53,10 @@ export default {
         level: "",
         career: "",
         intro: "",
+        avatar: "",
       },
+      // url应该在配置文件中导出
+      uploadUrl: "http://localhost:8002/service.oss/upload-file",
     };
   },
   computed: {
@@ -88,6 +108,14 @@ export default {
           });
       }
     },
+    uploadFile(response, file, fileList) {
+      // console避免eslint
+      console.log(file)
+      console.log(fileList)
+      if (response.code == 20000) {
+        this.form.avatar = response.data.url;
+      }
+    },
   },
   // created只会执行一次
   created() {
@@ -95,7 +123,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      console.log(to + from)
+      console.log(to + from);
       // 路由变化
       this.init();
     },
