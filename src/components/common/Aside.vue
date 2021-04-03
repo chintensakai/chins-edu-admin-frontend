@@ -18,7 +18,7 @@
         <span slot="title">{{ item.label }}</span>
       </el-menu-item> -->
       <el-submenu
-        :index="index"
+        :index="item.name"
         v-for="(item, index) in hasChildren"
         :key="index"
       >

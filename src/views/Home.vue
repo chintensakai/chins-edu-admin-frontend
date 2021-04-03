@@ -31,5 +31,6 @@ export default {
 }
 .el-main {
   padding: 5;
+  height: calc(100vh - 120px);
 }
 </style>

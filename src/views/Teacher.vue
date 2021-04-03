@@ -38,7 +38,14 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination background layout="prev, pager, next" :total="total">
+    <el-pagination
+      layout="prev, pager, next"
+      :total="total"
+      @prev-click="prevClick"
+      @next-click="nextClick"
+      @current-change="currentChange"
+      :current-page.sync="current"
+    >
     </el-pagination>
     <el-button type="text" v-show="false"></el-button>
   </div>
@@ -64,7 +71,6 @@ export default {
   methods: {
     showTeacherList() {
       getAllTeacherPage(this.current, this.size).then((res) => {
-        console.log(res);
         this.teacherList = res.data.items.records;
         this.total = res.data.items.total;
       });
@@ -97,6 +103,18 @@ export default {
           });
         });
     },
+    prevClick() {
+      this.current -= 1;
+      this.showTeacherList();
+    },
+    nextClick() {
+      this.current += 1;
+      this.showTeacherList();
+    },
+    currentChange() {
+      console.log("sssss")
+      this.showTeacherList();
+    }
   },
   created() {
     this.showTeacherList();

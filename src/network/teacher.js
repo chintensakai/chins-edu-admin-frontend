@@ -23,3 +23,11 @@ export function deletebyId(id) {
         url: teacher_base_url + '/' + id
     })
 }
+
+export function addTeacher(teacher) {
+    return request({
+        method: 'post',
+        url: teacher_base_url + "/add-teacher",
+        data: teacher
+    })
+}
