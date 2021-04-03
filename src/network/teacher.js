@@ -31,3 +31,18 @@ export function addTeacher(teacher) {
         data: teacher
     })
 }
+
+export function getTeacherById(id) {
+    return request({
+        method: 'get',
+        url: teacher_base_url + "/teacher/" + id
+    })
+}
+
+export function updateTeacher(teacher) {
+    return request({
+        method: 'put',
+        url: teacher_base_url + "/teacher/" + teacher.id,
+        data: teacher
+    })
+}

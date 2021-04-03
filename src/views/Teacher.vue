@@ -103,6 +103,11 @@ export default {
           });
         });
     },
+    handleEdit(id) {
+      this.$router.push({
+        path: '/teacher-form/' + id
+      });
+    },
     prevClick() {
       this.current -= 1;
       this.showTeacherList();
@@ -112,9 +117,9 @@ export default {
       this.showTeacherList();
     },
     currentChange() {
-      console.log("sssss")
+      console.log("sssss");
       this.showTeacherList();
-    }
+    },
   },
   created() {
     this.showTeacherList();

@@ -25,9 +25,14 @@ const routes = [
     component: () => import('../views/Teacher.vue')
   },
   {
-    path: '/add-teacher',
-    name: 'AddTeacher',
-    component: () => import('../views/TeacherAddForm.vue')
+    path: '/teacher-form',
+    name: 'TeacherForm',
+    component: () => import('../views/TeacherInfoForm.vue')
+  },
+  {
+    path: '/teacher-form/:id',
+    name: 'TeacherInfoForm',
+    component: () => import('../views/TeacherInfoForm.vue')
   }
 ]
 

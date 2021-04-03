@@ -64,8 +64,8 @@ export default {
               label: "所有讲师",
             },
             {
-              path: "/add-teacher",
-              name: "add-teacher",
+              path: "/teacher-form",
+              name: "teacher-form",
               label: "添加讲师",
             },
           ],
@@ -106,7 +106,6 @@ export default {
   },
   methods: {
     clickMenu(item) {
-      console.log(item)
       this.$store.commit("selectMenu", item);
     },
   },

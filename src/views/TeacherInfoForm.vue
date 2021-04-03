@@ -24,7 +24,10 @@
   </div>
 </template>
 <script>
-import {addTeacher} from '@/network/teacher.js'
+import { addTeacher } from "@/network/teacher.js";
+import { getTeacherById } from "@/network/teacher.js";
+import { updateTeacher } from "@/network/teacher.js";
+
 export default {
   data() {
     return {
@@ -38,19 +41,46 @@ export default {
   },
   methods: {
     onSubmit() {
-      addTeacher(this.form).then(() => {
-          this.$message({
+      if (this.form.id) {
+        updateTeacher(this.form)
+          .then(() => {
+            this.$message({
+              type: "success",
+              message: "修改成功!",
+            });
+            this.$router.replace({ path: "/teachers" });
+          })
+          .cache(() => {
+            this.$message({
+              type: "info",
+              message: "修改失败!",
+            });
+          });
+      } else {
+        addTeacher(this.form)
+          .then(() => {
+            this.$message({
               type: "success",
               message: "添加成功!",
             });
-          this.$router.replace({path: '/teachers'})
-      }).cache(() => {
-          this.$message({
+            this.$router.replace({ path: "/teachers" });
+          })
+          .cache(() => {
+            this.$message({
               type: "info",
               message: "添加失败!",
             });
-      })
+          });
+      }
     },
+  },
+  created() {
+    if (this.$route.params.id) {
+      getTeacherById(this.$route.params.id).then((res) => {
+        // 结构赋值
+        this.form = res.data.teacher;
+      });
+    }
   },
 };
 </script>
