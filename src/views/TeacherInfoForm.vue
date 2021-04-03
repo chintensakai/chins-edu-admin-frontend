@@ -39,7 +39,22 @@ export default {
       },
     };
   },
+  computed: {
+    level() {
+      return this.form.level == 1 ? "首席讲师" : "高级讲师";
+    },
+  },
   methods: {
+    init() {
+      if (this.$route.params.id) {
+        getTeacherById(this.$route.params.id).then((res) => {
+          // 结构赋值
+          this.form = res.data.teacher;
+        });
+      } else {
+        this.form = {};
+      }
+    },
     onSubmit() {
       if (this.form.id) {
         updateTeacher(this.form)
@@ -50,7 +65,7 @@ export default {
             });
             this.$router.replace({ path: "/teachers" });
           })
-          .cache(() => {
+          .catch(() => {
             this.$message({
               type: "info",
               message: "修改失败!",
@@ -65,22 +80,25 @@ export default {
             });
             this.$router.replace({ path: "/teachers" });
           })
-          .cache(() => {
+          .catch(() => {
             this.$message({
               type: "info",
-              message: "添加失败!",
+              messaFge: "添加失败!",
             });
           });
       }
     },
   },
+  // created只会执行一次
   created() {
-    if (this.$route.params.id) {
-      getTeacherById(this.$route.params.id).then((res) => {
-        // 结构赋值
-        this.form = res.data.teacher;
-      });
-    }
+    this.init();
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to + from)
+      // 路由变化
+      this.init();
+    },
   },
 };
 </script>
