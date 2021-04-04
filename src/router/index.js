@@ -33,7 +33,12 @@ const routes = [
     path: '/teacher-form/:id',
     name: 'TeacherInfoForm',
     component: () => import('../views/TeacherInfoForm.vue')
-  }
+  },
+  {
+    path: '/subjects',
+    name: 'Subject',
+    component: () => import('../views/Subject.vue')
+  },
 ]
 
 const router = new VueRouter({

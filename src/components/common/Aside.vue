@@ -77,19 +77,19 @@ export default {
           icon: "document",
         },
         {
-          label: "菜单4",
+          label: "课程管理",
           name: "document",
           icon: "document",
           children: [
             {
-              path: "/page1",
-              name: "page1",
-              label: "页面1",
+              path: "/subjects",
+              name: "subjects",
+              label: "所有课程",
             },
             {
-              path: "/page2",
-              name: "page1",
-              label: "页面2",
+              path: "/add-subject",
+              name: "add-subject",
+              label: "导入课程",
             },
           ],
         },
