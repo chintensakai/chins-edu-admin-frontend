@@ -20,8 +20,6 @@
         <el-upload
           class="upload-demo"
           :action="uploadUrl"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
           :on-success="uploadFile"
           list-type="picture"
           :multiple="false"
