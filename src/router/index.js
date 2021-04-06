@@ -39,6 +39,34 @@ const routes = [
     name: 'Subject',
     component: () => import('../views/Subject.vue')
   },
+  {
+    path: '/courses',
+    name: 'Course',
+    component: () => import('../views/Course.vue')
+  },
+  {
+    path: '/add-course',
+    name: 'Course',
+    component: () => import('../views/course/CourseInfo.vue')
+  }, 
+  {
+    path: '/add-course/:id',
+    name: 'Course',
+    component: () => import('../views/course/CourseInfo.vue'),
+    hidden: true
+  },
+  {
+    path: '/chapter/:id',
+    name: 'Course',
+    component: () => import('../views/course/CourseChapter.vue'),
+    hidden: true
+  },
+  {
+    path: '/publish/:id',
+    name: 'Course',
+    component: () => import('../views/course/CoursePublish.vue'),
+    hidden: true
+  },
 ]
 
 const router = new VueRouter({

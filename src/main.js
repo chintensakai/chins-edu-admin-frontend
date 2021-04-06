@@ -6,7 +6,7 @@ import store from './store'
 import { Button,  Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuItemGroup,
   Dropdown, DropdownMenu, DropdownItem, Breadcrumb, BreadcrumbItem,
   Table, TableColumn, Pagination, Form, FormItem, Input, Select, Option,
-  MessageBox, Message, Upload, Tree } from 'element-ui';
+  MessageBox, Message, Upload, Tree, Steps, Step, InputNumber } from 'element-ui';
 
 Vue.use(Button)
 Vue.use(Container)
@@ -32,6 +32,9 @@ Vue.use(Select);
 Vue.use(Option);
 Vue.use(Upload);
 Vue.use(Tree);
+Vue.use(Steps);
+Vue.use(Step);
+Vue.use(InputNumber);
 
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$message = Message;

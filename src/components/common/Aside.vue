@@ -77,19 +77,36 @@ export default {
           icon: "document",
         },
         {
-          label: "课程管理",
+          label: "课程分类管理",
           name: "document",
           icon: "document",
           children: [
             {
               path: "/subjects",
               name: "subjects",
-              label: "所有课程",
+              label: "所有课程分类",
             },
             {
               path: "/add-subject",
               name: "add-subject",
-              label: "导入课程",
+              label: "添加课程分类",
+            },
+          ],
+        },
+        {
+          label: "课程管理",
+          name: "course",
+          icon: "document",
+          children: [
+            {
+              path: "/courses",
+              name: "course",
+              label: "所有课程",
+            },
+            {
+              path: "/add-course",
+              name: "add-course",
+              label: "添加课程",
             },
           ],
         },
