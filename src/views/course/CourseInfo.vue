@@ -117,6 +117,7 @@ export default {
       for (let i = 0; i < this.subjects.length; i++) {
         if (this.subjects[i].id === value) {
           this.childrenSubjects = this.subjects[i].children;
+        //   选择一级之后，清空二级
           this.form.subjectId = ''
         }
       }

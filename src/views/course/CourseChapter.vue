@@ -16,10 +16,13 @@
 </template>
 
 <script>
+import { getCourseChapters } from "@/network/chapter.js";
 export default {
   data() {
     return {
       active: 1,
+      courseId: "",
+      chapters: [],
     };
   },
 
@@ -31,6 +34,17 @@ export default {
       if (this.active++ > 2) this.active = 0;
       this.$router.push({ path: "/publish/1" });
     },
+    getChaptersAndVideos() {
+      getCourseChapters(this.courseId).then((res) => {
+        this.chapters = res.data.chapters;
+      });
+    },
+  },
+  created() {
+    if (this.$route.params.id) {
+      this.courseId = this.$route.params.id;
+      this.getChaptersAndVideos();
+    }
   },
 };
 </script>
