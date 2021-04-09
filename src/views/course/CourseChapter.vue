@@ -28,11 +28,11 @@ export default {
 
   methods: {
     previous() {
-      this.$router.push({ path: "/add-course/1" });
+      this.$router.push({ path: "/add-course/" + this.courseId });
     },
     next() {
       if (this.active++ > 2) this.active = 0;
-      this.$router.push({ path: "/publish/1" });
+      this.$router.push({ path: "/publish/" + this.courseId });
     },
     getChaptersAndVideos() {
       getCourseChapters(this.courseId).then((res) => {
