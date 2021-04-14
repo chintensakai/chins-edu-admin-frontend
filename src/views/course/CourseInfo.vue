@@ -81,13 +81,14 @@
 <script>
 import { addCourseInfo } from "@/network/course.js";
 import { getCourseInfoById } from "@/network/course.js";
-// import { updateCourseInfo } from "@/network/course.js";
+import { updateCourseInfo } from "@/network/course.js";
 import { getAllTeacherPage } from "@/network/teacher.js";
 import { getAllSubjectTree } from "@/network/subject.js";
 export default {
   data() {
     return {
       active: 0,
+      courseId: "",
       form: {
         teacherId: "",
         subjectId: "",
@@ -109,6 +110,7 @@ export default {
       if (this.$route.params.id) {
         // 上一步返回，回显信息
         getCourseInfoById(this.$route.params.id).then((res) => {
+          this.courseId = this.$route.params.id;
           this.form = res.data.courseInfo;
           getAllSubjectTree().then((res) => {
             this.subjects = res.data.subjects;
@@ -145,13 +147,25 @@ export default {
     },
     next() {
       if (this.active++ > 2) this.active = 0;
-      addCourseInfo(this.form).then((res) => {
-        this.$message({
-          type: "success",
-          message: "添加成功!",
+      if (this.form.id) {
+        // 修改
+        updateCourseInfo(this.form).then(() => {
+          this.$message({
+            type: "success",
+            message: "修改成功!",
+          });
+          this.$router.push({ path: "/chapter/" + this.courseId });
         });
-        this.$router.push({ path: "/chapter/" + res.data.courseId });
-      });
+      } else {
+        // 添加
+        addCourseInfo(this.form).then((res) => {
+          this.$message({
+            type: "success",
+            message: "添加成功!",
+          });
+          this.$router.push({ path: "/chapter/" + res.data.courseId });
+        });
+      }
     },
     changeChildren(value) {
       for (let i = 0; i < this.subjects.length; i++) {
