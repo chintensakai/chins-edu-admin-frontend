@@ -80,6 +80,8 @@
 
 <script>
 import { addCourseInfo } from "@/network/course.js";
+import { getCourseInfoById } from "@/network/course.js";
+// import { updateCourseInfo } from "@/network/course.js";
 import { getAllTeacherPage } from "@/network/teacher.js";
 import { getAllSubjectTree } from "@/network/subject.js";
 export default {
@@ -90,8 +92,8 @@ export default {
         teacherId: "",
         subjectId: "",
         subjectParentId: "",
-        title: "Spring入门",
-        price: 0.00,
+        title: "",
+        price: 0.0,
         lessonNum: 0,
         description: "",
         cover:
@@ -103,6 +105,44 @@ export default {
     };
   },
   methods: {
+    init() {
+      if (this.$route.params.id) {
+        // 上一步返回，回显信息
+        getCourseInfoById(this.$route.params.id).then((res) => {
+          this.form = res.data.courseInfo;
+          getAllSubjectTree().then((res) => {
+            this.subjects = res.data.subjects;
+            this.subjects
+              .filter((p) => p.id == this.form.subjectParentId)
+              .forEach((s) => {
+                this.childrenSubjects = s.children;
+              });
+          });
+          getAllTeacherPage(0, 0).then((res) => {
+            this.teachers = res.data.items;
+          });
+        });
+      } else {
+        this.form = {
+          teacherId: "",
+          subjectId: "",
+          subjectParentId: "",
+          title: "",
+          price: 0.0,
+          lessonNum: 0,
+          description: "",
+          cover:
+            "beijing.aliyuncs.com/2020/05/13/7977da8dcca4445da521a1c420e49bf8java.jpg",
+        };
+        // 添加
+        getAllTeacherPage(0, 0).then((res) => {
+          this.teachers = res.data.items;
+        });
+        getAllSubjectTree().then((res) => {
+          this.subjects = res.data.subjects;
+        });
+      }
+    },
     next() {
       if (this.active++ > 2) this.active = 0;
       addCourseInfo(this.form).then((res) => {
@@ -117,19 +157,21 @@ export default {
       for (let i = 0; i < this.subjects.length; i++) {
         if (this.subjects[i].id === value) {
           this.childrenSubjects = this.subjects[i].children;
-        //   选择一级之后，清空二级
-          this.form.subjectId = ''
+          //   选择一级之后，清空二级
+          this.form.subjectId = "";
         }
       }
     },
   },
   created() {
-    getAllTeacherPage(0, 0).then((res) => {
-      this.teachers = res.data.items;
-    });
-    getAllSubjectTree().then((res) => {
-      this.subjects = res.data.subjects;
-    });
+    this.init();
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to + from);
+      // 路由变化
+      this.init();
+    },
   },
 };
 </script>

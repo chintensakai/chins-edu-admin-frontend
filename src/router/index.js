@@ -46,24 +46,24 @@ const routes = [
   },
   {
     path: '/add-course',
-    name: 'Course',
+    name: 'CourseInfo',
     component: () => import('../views/course/CourseInfo.vue')
   }, 
   {
     path: '/add-course/:id',
-    name: 'Course',
+    name: 'CourseAdd',
     component: () => import('../views/course/CourseInfo.vue'),
     hidden: true
   },
   {
     path: '/chapter/:id',
-    name: 'Course',
+    name: 'CourseChapter',
     component: () => import('../views/course/CourseChapter.vue'),
     hidden: true
   },
   {
     path: '/publish/:id',
-    name: 'Course',
+    name: 'CoursePublish',
     component: () => import('../views/course/CoursePublish.vue'),
     hidden: true
   },

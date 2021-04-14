@@ -66,7 +66,7 @@ export default {
     init() {
       if (this.$route.params.id) {
         getTeacherById(this.$route.params.id).then((res) => {
-          // 结构赋值
+          // 解构赋值
           this.form = res.data.teacher;
         });
       } else {

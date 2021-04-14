@@ -42,7 +42,7 @@ export default {
   },
   created() {
     getAllSubjectTree().then((res) => {
-      this.data = res.data.data;
+      this.data = res.data.subjects;
     });
   },
 };
