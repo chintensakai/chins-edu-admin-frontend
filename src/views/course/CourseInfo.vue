@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 style="text-align: center">发布新课程</h2>
-    <el-steps :active="active" finish-status="success">
+    <el-steps :active="active" finish-status="success" simple style="margin-bottom: 60px">
       <el-step title="填写课程基本信息"></el-step>
       <el-step title="创建课程大纲"></el-step>
       <el-step title="发布课程"></el-step>
