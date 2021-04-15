@@ -7,7 +7,7 @@ import { Button,  Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuI
   Dropdown, DropdownMenu, DropdownItem, Breadcrumb, BreadcrumbItem,
   Table, TableColumn, Pagination, Form, FormItem, Input, Select, Option,
   MessageBox, Message, Upload, Tree, Steps, Step, InputNumber,
-  Dialog } from 'element-ui';
+  Dialog, Radio } from 'element-ui';
 
 Vue.use(Button)
 Vue.use(Container)
@@ -37,6 +37,7 @@ Vue.use(Steps);
 Vue.use(Step);
 Vue.use(InputNumber);
 Vue.use(Dialog);
+Vue.use(Radio);
 
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$message = Message;

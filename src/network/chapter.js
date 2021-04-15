@@ -35,3 +35,11 @@ export function updateCourseChapters(chapter) {
         data: chapter
     })
 }
+
+// 获取章节信息
+export function getCourseChapterById(chapterId) {
+    return request({
+        method: 'get',
+        url: chapter_base_url + '/chapter/' + chapterId
+    })
+}
