@@ -27,3 +27,19 @@ export function updateCourseInfo(courseInfoVo) {
         data: courseInfoVo
     })
 }
+
+// 课程确认信息显示
+export function getPublishCourseInfo(courseId) {
+    return request({
+        url: course_base_url + '/publish-course-info/' + courseId,
+        method: 'get'
+    })
+}
+
+// 课程发布
+export function publishCourse(courseId) {
+    return request({
+        url: course_base_url + '/publish-course/' + courseId,
+        method: 'put'
+    })
+}

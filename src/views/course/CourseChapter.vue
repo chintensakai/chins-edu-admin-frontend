@@ -152,8 +152,8 @@ export default {
         });
       } else {
         // 增加
-        addCourseChapters(this.chapter).then((res) => {
-          this.chapter.id = res.data.chapterId;
+        addCourseChapters(this.chapter).then(() => {
+          // this.chapter.id = res.data.chapterId;
           this.getChaptersAndVideos();
         });
       }
