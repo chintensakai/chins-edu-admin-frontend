@@ -79,6 +79,16 @@
           <el-radio v-model="video.isFree" label="1">收费</el-radio>
         </el-form-item>
         <el-form-item label="上传视频" :label-width="formLabelWidth">
+          <el-upload
+            class="upload-demo"
+            :action="uploadUrl"
+            :on-success="uploadFile"
+            list-type="picture"
+            :multiple="false"
+            show-file-list
+            ><el-button size="small" type="primary">点击上传</el-button>
+            <div slot="tip" class="el-upload__tip"></div>
+          </el-upload>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -123,12 +133,13 @@ export default {
         courseId: "",
       },
       video: {
-        id: "",
+        videoId: "",
         title: "",
-        isFree: 0,
-        sort: 0
+        isFree: "",
+        sort: "",
       },
       formLabelWidth: "120px",
+      uploadUrl: "http://localhost:8003/service.video/upload-video",
     };
   },
 
@@ -185,13 +196,24 @@ export default {
     addVideoDialog(data) {
       console.log(data);
       this.dialogFormVisibleVideo = true;
-      this.video.chapterId = data.id
-      this.video.courseId = this.chapter.courseId
+      this.video.chapterId = data.id;
+      this.video.courseId = this.chapter.courseId;
     },
     submitAddCourseChaptersVideo() {
       addVideo(this.video).then(() => {
-        this.getChaptersAndVideos()
-      })
+        this.getChaptersAndVideos();
+        this.dialogFormVisibleVideo = false;
+        this.video.title = "";
+        this.video.sort = 0;
+      });
+    },
+    uploadFile(response, file, fileList) {
+      // console避免eslint
+      console.log(file);
+      console.log(fileList);
+      if (response.code == 20000) {
+        this.video.videoSourceId = response.data.videoId;
+      }
     },
   },
   created() {
