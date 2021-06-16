@@ -1,5 +1,5 @@
 import { request } from './request'
-const video_base_url = "/service.video/edu-video"
+const video_base_url = "/videoservice/edu-video"
 export function addVideo(video) {
     return request({
         url: video_base_url + "/video",

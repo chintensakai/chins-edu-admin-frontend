@@ -54,7 +54,7 @@ export default {
         avatar: "",
       },
       // url应该在配置文件中导出
-      uploadUrl: "http://localhost:8002/service.oss/upload-file",
+      uploadUrl: "http://localhost:8809/ossservice/upload-file",
     };
   },
   computed: {

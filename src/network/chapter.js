@@ -1,6 +1,6 @@
 import { request } from './request'
 
-const chapter_base_url = 'service.chapter/edu-chapter'
+const chapter_base_url = 'eduservice/edu-chapter'
 
 // 查询课程下的章节
 export function getCourseChapters(courseId) {

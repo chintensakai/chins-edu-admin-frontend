@@ -1,6 +1,6 @@
 import { request } from './request'
 
-const subject_base_url = '/service.subject/edu-subject'
+const subject_base_url = '/eduservice/edu-subject'
 
 export function getAllSubjectTree() {
     return request({

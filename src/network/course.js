@@ -1,6 +1,6 @@
 import { request } from './request'
 
-const course_base_url = '/service.course/edu-course'
+const course_base_url = '/eduservice/edu-course'
 
 // 添加课程
 export function addCourseInfo(courseInfo) {

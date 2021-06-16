@@ -139,7 +139,7 @@ export default {
         sort: "",
       },
       formLabelWidth: "120px",
-      uploadUrl: "http://localhost:8003/service.video/upload-video",
+      uploadUrl: "http://localhost:8809/videoservice/upload-video",
     };
   },
 

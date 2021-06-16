@@ -1,6 +1,6 @@
 import { request } from './request'
 
-const teacher_base_url = '/service.teacher/edu-teacher'
+const teacher_base_url = '/eduservice/edu-teacher'
 
 export function getAllTeacherPage(current, size) {
     return request({
